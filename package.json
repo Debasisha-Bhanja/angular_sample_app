@@ -1,0 +1,35 @@
+{
+  "name": "angular.sample.proj",
+  "version": "1.0.0",
+  "description": "Sample Angular Project using gulp",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "keywords": [
+    "angular",
+    "sample",
+    "project"
+  ],
+  "author": "Debasisha Bhanja",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "bower": "^1.7.9",
+    "gulp": "^3.9.1",
+    "gulp-clean": "^0.3.2",
+    "gulp-connect": "^4.0.0",
+    "gulp-jshint": "^2.0.1",
+    "gulp-minify-css": "^1.2.4",
+    "gulp-uglify": "^1.5.3",
+    "jshint": "^2.9.2",
+    "run-sequence": "^1.2.1"
+  },
+  "devDependencies": {
+    "gulp-changed": "^1.3.0",
+    "gulp-plumber": "^1.1.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Debasisha-Bhanja/angular_sample_app.git"
+  }
+}
