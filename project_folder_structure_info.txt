@@ -1,0 +1,30 @@
+Application Structure
+app (Application specific JS files will be under app folder)
+ -home
+    -- constants
+    -- controllers
+    -- services
+    app.js
+ -common
+    -- constants
+    -- controllers
+    -- services
+    app.js
+ -contact
+    -- constants
+    -- controllers
+    -- services
+    app.js
+ -about
+    -- constants
+    -- controllers
+    -- services
+    app.js
+css (Application specific css file will be under css folder)
+
+img (Application specific image files will be placed under img folder)
+
+thirdparty (All 3rd party relataed css js img will be under thirdparty folder)
+ -css
+ -js
+ -img
