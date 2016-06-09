@@ -16,9 +16,10 @@ var clean = require('gulp-clean');
 var runSequence = require('run-sequence');
 var print = require('gulp-print');
 var util = require('gulp-util');
+var ngannotate = require('gulp-ng-annotate');
 
 // tasks
-gulp.task('lint', function() {
+gulp.task('lint',['clean'], function() {
     gulp.src(['./js/app/**/*.js', '!./app/bower_components/**'])
         .pipe(jshint().on('error', util.log))
         .pipe(jshint.reporter('default').on('error', util.log))
@@ -74,14 +75,15 @@ gulp.task('minify-html', function() {
 gulp.task('minify-js', function() {
  return  gulp.src(['./app/**/**/*.js'])
     .pipe(print())
-    .pipe(concat('app.min.js').on('error', util.log))
+	.pipe(ngannotate({gulpWarnings: false})) 
+    .pipe(concat('app.min.js', {newLine: ';'}).on('error', util.log))
     .pipe(stripDebug().on('error', util.log))
     .pipe(uglify().on('error', util.log))
     .pipe(gulp.dest('./dist/js/').on('error', util.log));
 });
 
 gulp.task('thirdparty-js', function() {
-  return  gulp.src('./thirdparty/js/*.js')
+  return  gulp.src(['./thirdparty/js/*.js','./thirdparty/js/*.js.map'])
 		.pipe(print())
         .pipe(gulp.dest('./dist/thirdparty/js').on('error', util.log));
   });
@@ -90,7 +92,7 @@ gulp.task('copy-bower-components', function () {
  return  gulp.src('./app/bower_components/**')
         .pipe(gulp.dest('dist/bower_components'));
 });
-gulp.task('copy-html-files', function () {
+gulp.task('copy-html-files',['clean'], function () {
    return gulp.src('./partials/**/*.html')
 		.pipe(print())
         .pipe(gulp.dest('./dist/partials/'));
@@ -123,26 +125,30 @@ gulp.task('default',
 );
 gulp.task('build', function() {
     runSequence(
-        ['clean'],
-        ['lint','thirdparty-css', 'minify-css','thirdparty-js','minify-js','minify-html','minify-index'],
+        ['lint','clean'],
+        ['thirdparty-css', 'minify-css','thirdparty-js','minify-js','minify-html','minify-index'],
 		['connectDist'],
 		['openIndex']
     );
 	 // watch for HTML changes
   gulp.watch('./partials/**/*.html', function() {
-    gulp.run('minify-html');
+    gulp.run('minify-html','openIndex');
   });
 
  gulp.watch('./index.html', function() {
-    gulp.run('minify-index');
+    gulp.run('minify-index','openIndex');
   });
+  
+
   // watch for JS changes
   gulp.watch('./app/**/**/*.js', function() {
-    gulp.run('lint', 'minify-js');
+    gulp.run('minify-js','openIndex');
   });
+
+  
 
   // watch for CSS changes
   gulp.watch('./css/**/*.css', function() {
-    gulp.run('minify-css');
+    gulp.run('minify-css','openIndex');
   });
 });
