@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html ng-app="TestApp", ng-controller="TestController">
+  <head lang="en">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Angular Sample</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="thirdparty/css/bootstrap.css"/>
+    <link rel="stylesheet" href="thirdparty/font-awesome.css"/>
+    <link rel="stylesheet" href="thirdparty/animate.css"/>
+    <link rel="stylesheet" href="css/app.main.css"/>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Angular Sample</h1>
+      <h5>{{welcomeMsg}}</h5>
+      <!-- views -->
+      <div ng-view></div>
+    </div>
+    <!-- scripts -->
+    <script src="thirdparty/js/jquery.js"></script>
+    <script src="thirdparty/js/angular.js"></script>
+    <script src="thirdparty/js/angular-route.js"></script>
+    <script src="thirdparty/js/angular-animate.js"></script>
+    <script src="thirdparty/js/bootstrap.js"></script>
+    <script src="js/main.min.js"></script>
+  </body>
+</html>
