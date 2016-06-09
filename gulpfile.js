@@ -92,7 +92,7 @@ gulp.task('copy-bower-components', function () {
  return  gulp.src('./app/bower_components/**')
         .pipe(gulp.dest('dist/bower_components'));
 });
-gulp.task('copy-html-files',['clean'], function () {
+gulp.task('copy-html-files', function () {
    return gulp.src('./partials/**/*.html')
 		.pipe(print())
         .pipe(gulp.dest('./dist/partials/'));
